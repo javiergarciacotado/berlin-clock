@@ -8,6 +8,8 @@ import java.util.StringJoiner;
 public class BerlinClock {
 
     private static final String TIME24HOURS_PATTERN = "([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]";
+    private static final String LAMP_OFF = "X";
+    private static final String LAMP_YELLOW = "Y";
 
     public String convert(int hour, int min, int sec) {
         if (isValidTime(hour, min, sec)) {
@@ -17,7 +19,7 @@ public class BerlinClock {
     }
 
     public String getTopLine(int seconds) {
-        return "X";
+        return (seconds % 2 == 0) ? LAMP_YELLOW : LAMP_OFF;
     }
 
     /**

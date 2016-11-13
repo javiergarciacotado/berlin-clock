@@ -19,7 +19,7 @@ public class BerlinClockTest {
     }
 
     @Test
-    @Parameters({"Y, 2"})
+    @Parameters({"Y, 2", "X, 1"})
     public void shouldTurnTopLampYellowEveryTwoSeconds(String expectedResult, int seconds) {
         BerlinClock berlinClock = new BerlinClock();
         assertEquals(expectedResult, berlinClock.getTopLine(seconds));
