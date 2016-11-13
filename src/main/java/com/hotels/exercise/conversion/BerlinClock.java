@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 
 public class BerlinClock {
 
-    private static final String TIME24HOURS_PATTERN = "([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]";
+    private static final String TIME24HOURS_PATTERN = "HH:mm:ss";
     private static final String LAMP_OFF = "X";
     private static final String LAMP_YELLOW = "Y";
     private static final String LAMP_RED = "R";
@@ -80,7 +80,6 @@ public class BerlinClock {
      */
     private boolean isValidTime(int hour, int min, int sec)  {
         try {
-
             String time = convertToTextTime(hour, min, sec);
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(TIME24HOURS_PATTERN);
             return LocalTime.parse(time, dateTimeFormatter) != null;

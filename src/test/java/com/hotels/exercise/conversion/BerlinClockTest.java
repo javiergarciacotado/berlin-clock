@@ -6,6 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(JUnitParamsRunner.class)
@@ -56,6 +59,13 @@ public class BerlinClockTest {
         assertEquals(expectedResult, berlinClock.getFourthLine(min));
     }
 
+    @Test
+    @Parameters({"23, 59, 59"})
+    public void shouldConvert24hTimeToBerlinClockRepresentation(int hour, int min, int sec) {
+        String expectedResult = "XRRRRRRRXYYRYYRYYRYYYYYY";
+        final String conversion = berlinClock.convert(hour, min, sec);
+        assertThat(expectedResult, is(equalTo(conversion.replaceAll("\n", ""))));
+    }
 
 
 
