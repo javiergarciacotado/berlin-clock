@@ -16,6 +16,10 @@ public class BerlinClock {
         return "Unable to convert digital time to Berlin Clock representation";
     }
 
+    public String getTopLine(int seconds) {
+        return "X";
+    }
+
     /**
      * Validates the unit times are valid
      * @param hour Hour
@@ -50,4 +54,6 @@ public class BerlinClock {
         time.add(String.valueOf(sec));
         return time.toString();
     }
+
+
 }

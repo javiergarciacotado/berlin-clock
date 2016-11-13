@@ -18,6 +18,13 @@ public class BerlinClockTest {
         assertEquals(expectedMessage, berlinClock.convert(hour,min,sec));
     }
 
+    @Test
+    @Parameters({"Y, 2"})
+    public void shouldTurnTopLampYellowEveryTwoSeconds(String expectedResult, int seconds) {
+        BerlinClock berlinClock = new BerlinClock();
+        assertEquals(expectedResult, berlinClock.getTopLine(seconds));
+    }
+
 
 
 
