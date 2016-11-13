@@ -17,13 +17,22 @@ public class BerlinClock {
 
     public String convert(int hour, int min, int sec) {
         if (isValidTime(hour, min, sec)) {
-            return "";
+            StringJoiner sj = new StringJoiner("\n");
+
+            sj.add(getTopLine(sec));
+            sj.add(getFirstLine(hour));
+            sj.add(getSecondLine(hour));
+            sj.add(getThirdLine(min));
+            sj.add(getFourthLine(min));
+
+            return sj.toString();
         }
         return "Unable to convert digital time to Berlin Clock representation";
     }
 
     /**
      * Return blinking top lamp
+     *
      * @param seconds Seconds
      * @return Yellow lamp turned on/off
      */
@@ -33,6 +42,7 @@ public class BerlinClock {
 
     /**
      * Return first red lamps
+     *
      * @param hour Hours
      * @return Red lamps turned on
      */
@@ -43,6 +53,7 @@ public class BerlinClock {
 
     /**
      * Return second red lamps
+     *
      * @param hour Hours
      * @return Red lamps turned on
      */
@@ -53,6 +64,7 @@ public class BerlinClock {
 
     /**
      * Return first yellow + red lamps
+     *
      * @param min Minutes
      * @return Yellow + Red lamps turned on
      */
@@ -63,6 +75,7 @@ public class BerlinClock {
 
     /**
      * Return second yellow + red lamps
+     *
      * @param min Minutes
      * @return Yellow lamps turned on
      */
@@ -73,18 +86,18 @@ public class BerlinClock {
 
     /**
      * Validates the unit times are valid
+     *
      * @param hour Hour
-     * @param min Minutes
-     * @param sec Seconds
+     * @param min  Minutes
+     * @param sec  Seconds
      * @return true valid time format, false invalid time format
      */
-    private boolean isValidTime(int hour, int min, int sec)  {
+    private boolean isValidTime(int hour, int min, int sec) {
         try {
             String time = convertToTextTime(hour, min, sec);
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(TIME24HOURS_PATTERN);
             return LocalTime.parse(time, dateTimeFormatter) != null;
-        }
-        catch (DateTimeException dateTimeException) {
+        } catch (DateTimeException dateTimeException) {
             dateTimeException.printStackTrace();
         }
         return false;
@@ -92,9 +105,10 @@ public class BerlinClock {
 
     /**
      * Returns the text representation of an hour, minutes and seconds
+     *
      * @param hour Hour
-     * @param min Minutes
-     * @param sec Seconds
+     * @param min  Minutes
+     * @param sec  Seconds
      * @return Text representation in format HH:mm:ss
      */
     private String convertToTextTime(int hour, int min, int sec) {
@@ -107,13 +121,14 @@ public class BerlinClock {
 
     /**
      * Turns on/off the lamps given a length
+     *
      * @param numberOfLampsOn Number of lamps to turn on
-     * @param lampColour Color of the turned lamp
-     * @param length length of the row to turn on
+     * @param lampColour      Color of the turned lamp
+     * @param length          length of the row to turn on
      * @return turned on/off lamps
      */
     private String turn(int numberOfLampsOn, String lampColour, int length) {
-        return IntStream.range(0,length).mapToObj(i -> i < numberOfLampsOn ? lampColour : LAMP_OFF).collect(Collectors.joining());
+        return IntStream.range(0, length).mapToObj(i -> i < numberOfLampsOn ? lampColour : LAMP_OFF).collect(Collectors.joining());
     }
 
 
