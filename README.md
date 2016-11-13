@@ -1,13 +1,13 @@
-## Berlin Clock
-Implementation of the Berlin Clock 
+# Berlin Clock
+Implementation of the Berlin Clock exercise
 
-# Requirements
+## Requirements
 
 It requires:
 - Maven version >= 3
 - JDK8
 
-# Running the application
+## Running the application
 
 1. Clone the repository 
 ```
@@ -15,7 +15,7 @@ git clone https://github.com/javiergarciacotado/berlin-clock
 cd berlin-clock-master
 ```
 
-2. 
+2. Run maven phases
 ```
 mvn clean verify site --> Should run unit and integration tests and generates reporting documentation 
 mvn package --> Should generate a JAR with dependencies
@@ -26,6 +26,6 @@ mvn package --> Should generate a JAR with dependencies
 java -jar target/berlin-clock-1.0-SNAPSHOT-jar-with-dependencies.jar
 ```
 
-# Documentation
+## Documentation
 
 At `target/site/index.html` there is the Javadoc documentation, failsafe and surefire reports
