@@ -18,6 +18,11 @@ public class BerlinClock {
         return "Unable to convert digital time to Berlin Clock representation";
     }
 
+    /**
+     * Return blinking top lamp
+     * @param seconds Seconds
+     * @return Yellow lamp turned on/off
+     */
     public String getTopLine(int seconds) {
         return (seconds % 2 == 0) ? LAMP_YELLOW : LAMP_OFF;
     }
