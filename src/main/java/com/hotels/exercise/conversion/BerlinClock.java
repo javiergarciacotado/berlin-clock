@@ -113,9 +113,9 @@ public class BerlinClock {
      */
     private String convertToTextTime(int hour, int min, int sec) {
         StringJoiner time = new StringJoiner(":");
-        time.add(String.valueOf(hour));
-        time.add(String.valueOf(min));
-        time.add(String.valueOf(sec));
+        time.add(String.format("%02d", hour));
+        time.add(String.format("%02d", min));
+        time.add(String.format("%02d", sec));
         return time.toString();
     }
 

@@ -22,7 +22,7 @@ public class BerlinClockTest {
     }
 
     @Test
-    @Parameters({"13, 60, 00", "24, 00, 00", "0, 0, 0"})
+    @Parameters({"13, 60, 00", "25, 00, 00"})
     public void shouldNotConvertTimeNotIn24hFormat(int hour, int min, int sec) {
         String expectedMessage = "Unable to convert digital time to Berlin Clock representation";
         assertEquals(expectedMessage, berlinClock.convert(hour,min,sec));
