@@ -32,6 +32,30 @@ public class BerlinClockTest {
     }
 
 
+    @Test
+    @Parameters({"XXXX, 00", "RRXX, 14", "RRRR, 20", "RRRR, 23"})
+    public void shouldTurnFirstLineLampsRed(String expectedResult, int hours) {
+        assertEquals(expectedResult, berlinClock.getFirstLine(hours));
+    }
+
+    @Test
+    @Parameters({"XXXX, 00", "RRRR, 14", "XXXX, 20", "RRRX, 23"})
+    public void shouldTurnSecondLineLampsRed(String expectedResult, int hours) {
+        assertEquals(expectedResult, berlinClock.getSecondLine(hours));
+    }
+
+    @Test
+    @Parameters({"XXXXXXXXXXX, 00", "YYXXXXXXXXX, 14", "YYRYXXXXXXX, 20", "YYRYYRYYRYY, 59"})
+    public void shouldTurnThirdLineLampsRedandYellow(String expectedResult, int min) {
+        assertEquals(expectedResult, berlinClock.getThirdLine(min));
+    }
+
+    @Test
+    @Parameters({"XXXX, 00", "YYYY, 14", "XXXX, 20", "YYYY, 59"})
+    public void shouldTurnFourthLineLampsRed(String expectedResult, int min) {
+        assertEquals(expectedResult, berlinClock.getFourthLine(min));
+    }
+
 
 
 

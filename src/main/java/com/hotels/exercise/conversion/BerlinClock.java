@@ -4,12 +4,16 @@ import java.time.DateTimeException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class BerlinClock {
 
     private static final String TIME24HOURS_PATTERN = "([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]";
     private static final String LAMP_OFF = "X";
     private static final String LAMP_YELLOW = "Y";
+    private static final String LAMP_RED = "R";
+    private static final int INT_LAMP = 5;
 
     public String convert(int hour, int min, int sec) {
         if (isValidTime(hour, min, sec)) {
@@ -25,6 +29,46 @@ public class BerlinClock {
      */
     public String getTopLine(int seconds) {
         return (seconds % 2 == 0) ? LAMP_YELLOW : LAMP_OFF;
+    }
+
+    /**
+     * Return first red lamps
+     * @param hour Hours
+     * @return Red lamps turned on
+     */
+    public String getFirstLine(int hour) {
+        int numberOfLampsOn = hour / INT_LAMP;
+        return turn(numberOfLampsOn, LAMP_RED, 4);
+    }
+
+    /**
+     * Return second red lamps
+     * @param hour Hours
+     * @return Red lamps turned on
+     */
+    public String getSecondLine(int hour) {
+        int numberOfLampsOn = hour % INT_LAMP;
+        return turn(numberOfLampsOn, LAMP_RED, 4);
+    }
+
+    /**
+     * Return first yellow + red lamps
+     * @param min Minutes
+     * @return Yellow + Red lamps turned on
+     */
+    public String getThirdLine(int min) {
+        int numberOfLampsOn = min / INT_LAMP;
+        return turn(numberOfLampsOn, LAMP_YELLOW, 11).replaceAll("YYY", "YYR");
+    }
+
+    /**
+     * Return second yellow + red lamps
+     * @param min Minutes
+     * @return Yellow lamps turned on
+     */
+    public String getFourthLine(int min) {
+        int numberOfLampsOn = min % INT_LAMP;
+        return turn(numberOfLampsOn, LAMP_YELLOW, 4);
     }
 
     /**
@@ -60,6 +104,17 @@ public class BerlinClock {
         time.add(String.valueOf(min));
         time.add(String.valueOf(sec));
         return time.toString();
+    }
+
+    /**
+     * Turns on/off the lamps given a length
+     * @param numberOfLampsOn Number of lamps to turn on
+     * @param lampColour Color of the turned lamp
+     * @param length length of the row to turn on
+     * @return turned on/off lamps
+     */
+    private String turn(int numberOfLampsOn, String lampColour, int length) {
+        return IntStream.range(0,length).mapToObj(i -> i < numberOfLampsOn ? lampColour : LAMP_OFF).collect(Collectors.joining());
     }
 
 
