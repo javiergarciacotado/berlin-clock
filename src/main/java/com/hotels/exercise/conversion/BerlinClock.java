@@ -10,6 +10,9 @@ import java.util.StringJoiner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * Class to transform digital time to Berlin Clock representation
+ */
 public class BerlinClock {
 
     private static final String TIME24HOURS_PATTERN = "HH:mm:ss";
