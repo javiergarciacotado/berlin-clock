@@ -1,5 +1,8 @@
 package com.hotels.exercise.conversion;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.time.DateTimeException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -14,6 +17,8 @@ public class BerlinClock {
     private static final String LAMP_YELLOW = "Y";
     private static final String LAMP_RED = "R";
     private static final int INT_LAMP = 5;
+
+    private static Logger logger = LoggerFactory.getLogger(BerlinClock.class);
 
     public String convert(int hour, int min, int sec) {
         if (isValidTime(hour, min, sec)) {
@@ -98,7 +103,7 @@ public class BerlinClock {
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(TIME24HOURS_PATTERN);
             return LocalTime.parse(time, dateTimeFormatter) != null;
         } catch (DateTimeException dateTimeException) {
-            dateTimeException.printStackTrace();
+            logger.error(dateTimeException.getMessage());
         }
         return false;
     }

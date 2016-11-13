@@ -17,7 +17,7 @@ public class BerlinClockTest {
     private BerlinClock berlinClock;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         berlinClock = new BerlinClock();
     }
 

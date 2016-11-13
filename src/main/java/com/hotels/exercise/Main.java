@@ -4,7 +4,7 @@ import com.hotels.exercise.conversion.BerlinClock;
 
 import java.time.LocalTime;
 
-public class Main {
+class Main {
 
     public static void main(String[] args) {
         BerlinClock berlinClock = new BerlinClock();
