@@ -9,9 +9,6 @@ It requires:
 
 ## Running the application
 
-Two different ways to run it:
-
-1. Via generating documentation and jar:
  1. Clone the repository 
   ```
   git clone https://github.com/javiergarciacotado/berlin-clock
@@ -26,10 +23,10 @@ Two different ways to run it:
   ```
   java -jar target/berlin-clock-1.0-SNAPSHOT-jar-with-dependencies.jar
   ```
-2. To see an immediate output in the console 
- ```
- mvn exec:java
- ```
+  or
+  ```
+  mvn exec:java
+  ```
 
 ## Documentation
 
